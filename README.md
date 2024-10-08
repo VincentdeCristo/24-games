@@ -54,3 +54,88 @@ python backend/app.py
 ```arduino
 http://127.0.0.1:5000/
 ```
+
+## Setting up Auto-Start on Boot
+
+### On Linux (Using systemd):
+
+1. Create a systemd service file:
+
+```bash
+sudo nano /etc/systemd/system/flaskapp.service
+```
+
+2. Define the service:
+
+```ini
+[Unit]
+Description=xxxxxx
+After=network.target
+
+[Service]
+User=your_username
+WorkingDirectory=/path/to/your/project_root
+ExecStart=/path/to/your/project_root/venv/bin/python backend/app.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+```
+
+- **Description**: A short description of your service.
+- **User**: The user account that runs the script (replace `your_username`).
+- **WorkingDirectory**: The path to your project directory.
+- **ExecStart**: The command to start your Flask app using the virtual environment's Python.
+- **Restart**: Automatically restarts the service if it crashes.
+
+3. Enable and Start the Service:
+
+   - Reload `systemd` to recognize the new service:
+
+   ```bash
+   sudo systemctl daemon-reload
+   ```
+
+   - Enable the service to start on boot:
+
+   ```bash
+   sudo systemctl enable flaskapp
+   ```
+
+   - Start the service:
+
+   ```bash
+   sudo systemctl start flaskapp
+   ```
+
+### On Windows (Using Task Scheduler):
+
+1. Open Task Scheduler:
+
+   - Go to "Start" > search for "Task Scheduler".
+
+2. Create a New Task:
+
+   - In the right-hand panel, click on "Create Task".
+
+3. General Tab:
+
+   - Name the task (e.g., "FlaskApp Auto-Start").
+   - Select "Run whether the user is logged on or not".
+   - Check "Run with highest privileges".
+
+4. Triggers Tab:
+
+   - Click "New" and set the trigger to "At startup".
+
+5. Actions Tab:
+
+   - Click "New", then in "Program/script", enter the path to the python.exe in your virtual environment.
+   - In the "Arguments" field, enter the path to your `app.py`:
+
+   ```bash
+   /path/to/your/project_root/backend/app.py
+   ```
+
+6. Finish:
+   - Click "OK" and enter your password when prompted.
