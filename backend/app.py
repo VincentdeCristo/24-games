@@ -55,10 +55,10 @@ def solve():
     else:
         return jsonify({'solution': None})
 
-# 显示前端的 HTML 页面
+# Display the front-end HTML page
 @app.route('/')
 def index():
-    return render_template('index.html')  # 直接使用文件名，不需要路径
+    return render_template('index.html')  # Use the file name directly, no path is required
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)

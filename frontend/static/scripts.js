@@ -6,24 +6,24 @@ function solve() {
 
     const numbers = [parseInt(num1), parseInt(num2), parseInt(num3), parseInt(num4)];
 
-    // 移除之前可能添加的错误样式
+    // Remove any erroneous styles that may have been added previously
     document.querySelectorAll('input').forEach(input => input.classList.remove('error-input'));
 
-    // 检查是否所有输入都是有效的数字
+    // Checks if all inputs are valid numbers
     if (numbers.some(num => isNaN(num) || num === "" || num < 0 || num > 99)) {
         document.getElementById('result').textContent = 'Please enter 4 valid numbers between 0 and 99.';
         
-        // 给输入错误的字段添加抖动效果
+        // Add a jitter effect to the fields with incorrect input
         document.querySelectorAll('input').forEach(input => {
             if (isNaN(input.value) || input.value === "" || input.value < 0 || input.value > 99) {
-                input.classList.add('error-input');  // 触发 CSS 抖动动画
+                input.classList.add('error-input');  // Triggering CSS shake animation
             }
         });
 
         return;
     }
 
-    // 向后端发送请求并处理结果
+    // Send requests to the backend and process the results
     fetch('/solve', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

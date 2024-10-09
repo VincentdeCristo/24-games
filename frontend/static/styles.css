@@ -12,7 +12,7 @@ h1 {
     margin-bottom: 20px;
 }
 
-/* 输入框样式 */
+/* Input box style */
 input {
     width: 60px;
     padding: 8px;
@@ -29,9 +29,9 @@ input:focus {
     outline: none;
 }
 
-/* 输入框抖动动画 */
+/* Input box shaking animation */
 input.error-input {
-    animation: shake 0.5s; /* 0.5秒的抖动动画 */
+    animation: shake 0.5s; /* 0.5 second shaking animation */
     border-color: red;
 }
 
@@ -43,7 +43,7 @@ input.error-input {
     100% { transform: translateX(0); }
 }
 
-/* 按钮样式 */
+/* Button Style */
 button {
     background-color: #4CAF50;
     color: white;
@@ -61,10 +61,10 @@ button:hover {
 }
 
 button:active {
-    transform: scale(0.98); /* 点击时缩小按钮 */
+    transform: scale(0.98); /* Zoom out button when clicked */
 }
 
-/* 结果显示区域 */
+/* Results display area */
 .result {
     margin-top: 20px;
     font-size: 1.5em;
@@ -73,13 +73,13 @@ button:active {
     min-height: 40px;
 }
 
-/* 错误提示 */
+/* Error message */
 .error {
     color: red;
     font-weight: bold;
 }
 
-/* 响应式设计部分 */
+/* Responsive design */
 @media (max-width: 600px) {
     body {
         margin-top: 30px;
