@@ -63,7 +63,8 @@ pip install -r requirements.txt
 
 ```bash
 
-python backend/app.py
+cd backend
+gunicorn --workers 3 --bind 127.0.0.1:5000 app:app
 
 ```
 
@@ -87,14 +88,14 @@ sudo nano /etc/systemd/system/flaskapp.service
 
 ```ini
 [Unit]
-Description=xxxxxx
+Description=xxxxxxx
 After=network.target
 
 [Service]
 User=your_username
-WorkingDirectory=/path/to/your/project_root
-ExecStart=/path/to/your/project_root/venv/bin/python backend/app.py
-Restart=always
+WorkingDirectory=/path/to/your/app
+Environment="PATH=/path/to/your/virtualenv/bin"
+ExecStart=/path/to/your/virtualenv/bin/gunicorn --workers 3 --bind 127.0.0.1:5000 app:app
 
 [Install]
 WantedBy=multi-user.target
@@ -103,6 +104,7 @@ WantedBy=multi-user.target
 - **Description**: A short description of your service.
 - **User**: The user account that runs the script (replace `your_username`).
 - **WorkingDirectory**: The path to your project directory.
+- **Enviroment**: Sets environment variables for the service
 - **ExecStart**: The command to start your Flask app using the virtual environment's Python.
 - **Restart**: Automatically restarts the service if it crashes.
 
