@@ -63,8 +63,9 @@ pip install -r requirements.txt
 
 ```bash
 
+# On Windows, just use `python backend/app.py` only
 cd backend
-gunicorn --workers 3 --bind 127.0.0.1:5000 app:app # On Windows, just use `python backend/app.py` only
+gunicorn --workers 3 --bind 127.0.0.1:5000 app:app
 
 ```
 
