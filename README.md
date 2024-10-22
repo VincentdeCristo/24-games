@@ -94,9 +94,9 @@ After=network.target
 
 [Service]
 User=your_username
-WorkingDirectory=/path/to/your/app
-Environment="PATH=/path/to/your/virtualenv/bin"
-ExecStart=/path/to/your/virtualenv/bin/gunicorn --workers 3 --bind 127.0.0.1:5000 app:app
+WorkingDirectory=/path/to/your/project_root/backend
+Environment="PATH=/path/to/your/project_root/venv/bin"
+ExecStart=/path/to/your/project_root/venv/bin/gunicorn --workers 3 --bind 127.0.0.1:5000 app:app
 
 [Install]
 WantedBy=multi-user.target
